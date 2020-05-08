@@ -11,7 +11,7 @@ const picArray = [
 //スライドショーが再生中かどうかを記録しておくためのグローバル変数
 let playingID = 0;
 
-//１番目の画像と画像タイトルを表示
+//初期画面
 let counter = 1;
 document.getElementById('pics').src = picArray[0].src;
 document.getElementById('pic-title').innerText = picArray[0].title;
@@ -33,26 +33,12 @@ function changePicture() {
 // ボタンを押してスライドショーを再生・停止する関数
 //関数名「playSlidedeshow」
 function playSlideshow() {
-  if (playingID) {
+  if (playingID === 0) {
+    playingID = setInterval(changePicture, 1000);
+    document.getElementById('playButton').innerText = 'STOP';
+  } else {
     clearInterval(playingID);
     document.getElementById('playButton').innerText = 'PLAY';
     playingID = 0;
-  } else {
-    playingID = setInterval(changePicture, 1000);
-    document.getElementById('playButton').innerText = 'STOP';
   }
 }
-
-// function playSlideshow() {
-//   // playingIDが0以外であればなんでもいいですね。こちらをelseにするのが良いですね、詳しく条件式を書かなければならない方をif文に持ってきます。
-//   if (playingID !== 0) {
-//     playingID = setInterval(changePicture, 1000);
-//     document.getElementById('playButton').innerText = 'STOP';
-//     // ifとelseを逆にする必要があること以外は、とてもよくできていると思います＾＾
-//   } else {
-//     // playingIDが0の時と条件分岐で指定が必要ですね、if文の方が向いています
-//     clearInterval(playingID);
-//     document.getElementById('playButton').innerText = 'PLAY';
-//     playingID = 0;
-//   }
-// }
