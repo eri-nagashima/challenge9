@@ -12,33 +12,47 @@ const picArray = [
 let playingID = 0;
 
 //１番目の画像と画像タイトルを表示
+let counter = 1;
 document.getElementById('pics').src = picArray[0].src;
 document.getElementById('pic-title').innerText = picArray[0].title;
 
 //写真を切り替える関数
 //関数名「changePicture」
-let counter = 0;
-
 function changePicture() {
-  counter++;
-
   if (counter < picArray.length) {
     document.getElementById('pics').src = picArray[counter].src;
     document.getElementById('pic-title').innerText = picArray[counter].title;
+    counter++;
+  } else {
+    counter = 1;
+    document.getElementById('pics').src = picArray[0].src;
+    document.getElementById('pic-title').innerText = picArray[0].title;
   }
-  // counter++; //ここに置くとpicture1が一回多く表示されるのはなぜ？
 }
 
 // ボタンを押してスライドショーを再生・停止する関数
 //関数名「playSlidedeshow」
 function playSlideshow() {
   if (playingID) {
-    // playingID = 0; //ここに置くとclearIntervalが作動しない、なぜか？
     clearInterval(playingID);
     document.getElementById('playButton').innerText = 'PLAY';
     playingID = 0;
   } else {
-    playingID = setInterval(changePicture, 2000);
+    playingID = setInterval(changePicture, 1000);
     document.getElementById('playButton').innerText = 'STOP';
   }
 }
+
+// function playSlideshow() {
+//   // playingIDが0以外であればなんでもいいですね。こちらをelseにするのが良いですね、詳しく条件式を書かなければならない方をif文に持ってきます。
+//   if (playingID !== 0) {
+//     playingID = setInterval(changePicture, 1000);
+//     document.getElementById('playButton').innerText = 'STOP';
+//     // ifとelseを逆にする必要があること以外は、とてもよくできていると思います＾＾
+//   } else {
+//     // playingIDが0の時と条件分岐で指定が必要ですね、if文の方が向いています
+//     clearInterval(playingID);
+//     document.getElementById('playButton').innerText = 'PLAY';
+//     playingID = 0;
+//   }
+// }
