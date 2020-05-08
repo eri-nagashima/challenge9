@@ -34,7 +34,7 @@ function changePicture() {
 //関数名「playSlidedeshow」
 function playSlideshow() {
   if (playingID === 0) {
-    playingID = setInterval(changePicture, 1000);
+    playingID = setInterval(changePicture, 2000);
     document.getElementById('playButton').innerText = 'STOP';
   } else {
     clearInterval(playingID);
