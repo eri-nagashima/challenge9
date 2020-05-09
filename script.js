@@ -11,10 +11,7 @@ const picArray = [
 //スライドショーが再生中かどうかを記録しておくためのグローバル変数
 let playingID = 0;
 
-//初期画面
-let counter = 1;
-document.getElementById('pics').src = picArray[0].src;
-document.getElementById('pic-title').innerText = picArray[0].title;
+let counter = 0;
 
 //写真を切り替える関数
 //関数名「changePicture」
@@ -33,7 +30,7 @@ function changePicture() {
 // ボタンを押してスライドショーを再生・停止する関数
 //関数名「playSlidedeshow」
 function playSlideshow() {
-  if (playingID === 0) {
+  if (playingID == 0) {
     playingID = setInterval(changePicture, 2000);
     document.getElementById('playButton').innerText = 'STOP';
   } else {
